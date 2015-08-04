@@ -1,5 +1,5 @@
 # MudbusYun
-    An Arduino library for a Modbus TCP slave over WiFi on the Arduino Yun.
+    An Arduino library for a Modbus TCP slave on the Arduino Yun.
     A separate library is available for the Arduino Uno in combination with the WiFi shield.
     Copyright (C) 2015  Ton Verra - www.verra.biz
     Based on the Mudbus.h - a library for a Modbus TCP slave by Dee Wykoff.
