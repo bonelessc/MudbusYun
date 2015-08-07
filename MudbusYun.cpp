@@ -42,9 +42,9 @@ void MudbusYun::Run(){
 if (first == LOW){
    MbServer.begin();
    Serial.println("MbServer Begin");
-   client = MbServer.accept();
    first = HIGH;
    } 
+
 
   if(millis() > (PreviousActivityTime + 60000)){
     if(Active){
@@ -55,14 +55,15 @@ if (first == LOW){
       }
     }
 
- //  MbServer.noListenOnLocalhost();
+
   if(client.connected()){
     Reads = 1 + Reads * (Reads < 999);
     int i = 0;
     while(client.available()){
       ByteArray[i] = client.read();
       i++;
-      }
+      } 
+   
     SetFC(ByteArray[7]);  //Byte 7 of request is FC
     if(!Active){
       Active = true;
@@ -71,9 +72,8 @@ if (first == LOW){
       Serial.println("Mb active");
       #endif
       }
-   }
- 
-
+ }
+ else {client = MbServer.accept();}
 
 int Start, WordDataLength, ByteDataLength, CoilDataLength, MessageLength;
 
