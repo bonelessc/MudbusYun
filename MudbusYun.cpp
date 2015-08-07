@@ -21,6 +21,8 @@
 
 #include "MudbusYun.h"
 #include "SPI.h"
+#include <YunClient.h>
+#include <YunServer.h>
 
 YunServer MbServer(MB_PORT);
 YunClient client;
@@ -35,8 +37,25 @@ void MudbusYun::Run(){
   Runs = 1 + Runs * (Runs < 999);
 //****************** Read from socket ****************
 
-  MbServer.noListenOnLocalhost();
-  client = MbServer.accept();
+ MbServer.noListenOnLocalhost();
+
+if (first == LOW){
+   MbServer.begin();
+   Serial.println("MbServer Begin");
+   client = MbServer.accept();
+   first = HIGH;
+   } 
+
+  if(millis() > (PreviousActivityTime + 60000)){
+    if(Active){
+      Active = false;
+      #ifdef MbDebug
+      Serial.println("Mb not active");
+      #endif
+      }
+    }
+
+ //  MbServer.noListenOnLocalhost();
   if(client.connected()){
     Reads = 1 + Reads * (Reads < 999);
     int i = 0;
@@ -54,20 +73,7 @@ void MudbusYun::Run(){
       }
    }
  
-if (first == LOW){
-   MbServer.begin();
-   Serial.println("MbServer Begin");
-   first = HIGH;
-   } 
 
-  if(millis() > (PreviousActivityTime + 60000)){
-    if(Active){
-      Active = false;
-      #ifdef MbDebug
-      Serial.println("Mb not active");
-      #endif
-      }
-    }
 
 int Start, WordDataLength, ByteDataLength, CoilDataLength, MessageLength;
 
