@@ -1,8 +1,4 @@
 #include <MudbusYun.h>
-#include <Bridge.h>
-#include <YunClient.h>
-#include <YunServer.h>
-#include <SPI.h>
 
 MudbusYun Mb;
 
@@ -16,14 +12,14 @@ void loop() {
   Mb.Run(); // start MbTcp subroutine
   delay(1000);
 
-  Mb.R[0] = 0;
-  Mb.R[1] = 1;
-  Mb.R[2] = 2;
-  Mb.R[3] = 3;
-  Mb.R[4] = 4;
-  Mb.R[5] = 5;
-  Mb.R[6] = 6;
-  Mb.R[7] = 7;
+  Mb.R[0] = 20;
+  Mb.R[1] = 21;
+  Mb.R[2] = 22;
+  Mb.R[3] = 23;
+  Mb.R[4] = 24;
+  Mb.R[5] = 25;
+  Mb.R[6] = 26;
+  Mb.R[7] = 27;
 
   if   (!Mb.C[7]) {
     digitalWrite(13, HIGH);
