@@ -22,9 +22,8 @@
 #define MbDebug
 #include "Arduino.h"
 
-#include <SPI.h>
-#include <YunClient.h>
-#include <YunServer.h>
+#include <BridgeClient.h>
+#include <BridgeServer.h>
 #include <Bridge.h>
 
 #ifndef MudbusYun_h

@@ -20,12 +20,9 @@
 */
 
 #include "MudbusYun.h"
-#include "SPI.h"
-#include <YunClient.h>
-#include <YunServer.h>
 
-YunServer MbServer(MB_PORT);
-YunClient client;
+BridgeServer MbServer(MB_PORT);
+BridgeClient client;
 
 MudbusYun::MudbusYun(){
   }
